@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutMeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,6 +30,14 @@ Route::controller(AboutMeController::class)
 Route::controller(ProductController::class)
     ->prefix('/products')
     ->name('products.')
+    ->group(static function(): void {
+        Route::get('', 'index')->name('index');
+    })
+;
+
+Route::controller(ShopController::class)
+    ->prefix('/shops')
+    ->name('shops.')
     ->group(static function(): void {
         Route::get('', 'index')->name('index');
     })
